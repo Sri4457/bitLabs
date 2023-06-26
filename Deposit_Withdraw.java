@@ -60,7 +60,7 @@ public class Deposit_Withdraw {
           // if (chang_amount != 0) {
           acbal = acbal - amount; // acbal-chang_amount;
           w_count++; // incrementing the withdrawls count
-          no_of_notes(amount);// we won't call this function incase we have only 500
+          no_of_notes(amount);// we call this function with chang_amount incase we have 500 notes
           // notes
           System.out.println("Available bal is :" + acbal);
           // } else {
