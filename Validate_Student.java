@@ -37,7 +37,8 @@ class Validate_Student {
         && stud_email.length() >= 10 && stud_email.length() <= 25) {
       for (int i = 1; i < stud_email.length(); i++) {
         int a = (int) stud_email.charAt(i);
-        if (a >= 65 && a <= 128 || a >= 48 && a <= 57 || stud_email.charAt(i) == '@' || stud_email.charAt(i) == '.')
+        if (a >= 65 && a <= 128 || a >= 48 && a <= 57 || stud_email.charAt(i) == '@' || stud_email.charAt(i) == '.'
+            || stud_email.charAt(i) == '_')
           continue;
         else {
           System.out.println("Student email is not in correct format");
