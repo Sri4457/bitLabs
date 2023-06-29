@@ -3,36 +3,52 @@ import java.util.*;
 class Validate_Student {
   public boolean validate_studentId(String stud_id) {
     char ch = stud_id.charAt(stud_id.length() - 1);
-    if (stud_id.length() >= 6 && stud_id.length() <= 10 && stud_id.startsWith("std") && ch >= '0' && ch <= '9') {
-      return true;
+    if (stud_id.length() >= 6 && stud_id.length() <= 10) {
+      if (stud_id.startsWith("std")) {
+        if (ch >= '0' && ch <= '9') {
+          System.out.println("Student id is valid");
+          return true;
+        } else {
+          System.out.println("Student id is not ending with digit");
+          return false;
+        }
+      } else {
+        System.out.println("Student id is not starting with std");
+        return false;
+      }
     } else {
-      System.out.println("Student Id is not in correct format");
+      System.out.println("student id length is incorrect");
       return false;
     }
   }
 
   public boolean validate_studentName(String stud_name) {
-    if (stud_name.length() >= 5 && stud_name.length() <= 15 && stud_name.charAt(0) >= 'A'
-        && stud_name.charAt(0) <= 'Z') {
-      for (int i = 1; i < stud_name.length(); i++) {
-        int a = (int) stud_name.charAt(i);
-        if (a >= 97 && a <= 128)
-          continue;
-        else {
-          System.out.println("Student name is not in correct format");
-          return false;
+    if (stud_name.length() >= 5 && stud_name.length() <= 15) {
+      if (stud_name.charAt(0) >= 'A' && stud_name.charAt(0) <= 'Z') {
+        for (int i = 1; i < stud_name.length(); i++) {
+          int a = (int) stud_name.charAt(i);
+          if (a >= 97 && a <= 128)
+            continue;
+          else {
+            System.out.println("The characters other than first in student name is not a lower case alphabet");
+            return false;
+          }
         }
+        System.out.println("Student name is valid");
+        return true;
+      } else {
+        System.out.println("Student name starting character is not a Capital letter");
+        return false;
       }
-      return true;
     } else {
-      System.out.println("Student name is not in correct format");
+      System.out.println("Student name is not in a correct length");
       return false;
     }
   }
 
   public boolean validate_studentEmail(String stud_email) {
     if (stud_email.contains("@") && (stud_email.endsWith(".com") || stud_email.endsWith(".in"))
-        && (stud_email.charAt(0) >= 'A' || stud_email.charAt(0) <= 'Z'
+        && (stud_email.charAt(0) >= 'A' && stud_email.charAt(0) <= 'Z'
             || stud_email.charAt(0) >= 'a' && stud_email.charAt(0) <= 'z')
         && stud_email.length() >= 10 && stud_email.length() <= 25) {
       for (int i = 1; i < stud_email.length(); i++) {
@@ -59,13 +75,14 @@ class Validate_Student {
         if (a >= 48 && a <= 57)
           continue;
         else {
-          System.out.println("Student Mobile is not in correct format");
+          System.out.println("Student Mobileis not valid has it contains other than digits in it");
           return false;
         }
       }
+      System.out.println("Student Mobile is valid");
       return true;
     } else {
-      System.out.println("Student Mobile is not in a correct format");
+      System.out.println("Student Mobile length is not 10");
       return false;
     }
   }
@@ -80,37 +97,64 @@ class Validate_Student {
         } else if (a >= 97 && a <= 128)
           l_count++;
         else if (stud_pass.charAt(i) == ' ') {
-          System.out.println("Student Password is not in a correct format");
+          System.out.println("Student Password is not in a correct format has it has a space init");
           return false;
         } else if (a >= 48 && a <= 57)
           d_count++;
         else
           spe_count++;
       }
-      if (u_count >= 1 && l_count >= 1 && d_count >= 1 && spe_count >= 1)
-        return true;
-      else {
-        System.out.println("Student Password is not in correct format");
+      if (u_count >= 1) {
+        if (l_count >= 1) {
+          if (d_count >= 1) {
+            if (spe_count >= 1) {
+              System.out.println("Student Password is valid");
+              return true;
+            } else {
+              System.out.println("Student password doesn't had a special character");
+              return false;
+            }
+          } else {
+            System.out.println("Student password doesn't had a digit character");
+            return false;
+          }
+        } else {
+          System.out.println("Student password doesn't had a lowercase alphabet");
+          return false;
+        }
+      } else {
+        System.out.println("Student password doesn't had a uppercase alphabet");
         return false;
       }
     } else {
-      System.out.println("Student Password is not in a correct format");
+      System.out.println("Student Password is not in a correct length");
       return false;
     }
   }
 
   public boolean validate_studentUname(String stud_uname, String stud_pass) {
     int a = stud_uname.charAt(0);
-    if (!stud_uname.equals(stud_pass) && stud_uname.length() >= 8 && stud_uname.length() <= 15 && a >= 65 && a <= 128) {
-      for (int i = 1; i < stud_uname.length(); i++) {
-        if (stud_uname.charAt(i) == ' ') {
-          System.out.println("Student UserName is not in correct format");
+    if (!stud_uname.equals(stud_pass)) {
+      if (stud_uname.length() >= 8 && stud_uname.length() <= 15) {
+        if (a >= 65 && a <= 128) {
+          for (int i = 1; i < stud_uname.length(); i++) {
+            if (stud_uname.charAt(i) == ' ') {
+              System.out.println("Student UserName is not in correct format it has space in it");
+              return false;
+            }
+          }
+          System.out.println("Student Username is valid");
+          return true;
+        } else {
+          System.out.println("Student Username first character is not an alphabet");
           return false;
         }
+      } else {
+        System.out.println("Student username length is not in a range 8 to 15");
+        return false;
       }
-      return true;
     } else {
-      System.out.println("Student UserName is not in correct format");
+      System.out.println("The username and password are same but they shouldn't be same");
       return false;
     }
   }
