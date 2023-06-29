@@ -41,29 +41,43 @@ class Validate_Student {
         return false;
       }
     } else {
-      System.out.println("Student name is not in a correct length");
+      System.out.println("Student name is not in a correct length that shoudl in 5 to 15 characters");
       return false;
     }
   }
 
   public boolean validate_studentEmail(String stud_email) {
-    if (stud_email.contains("@") && (stud_email.endsWith(".com") || stud_email.endsWith(".in"))
-        && (stud_email.charAt(0) >= 'A' && stud_email.charAt(0) <= 'Z'
-            || stud_email.charAt(0) >= 'a' && stud_email.charAt(0) <= 'z')
-        && stud_email.length() >= 10 && stud_email.length() <= 25) {
-      for (int i = 1; i < stud_email.length(); i++) {
-        int a = (int) stud_email.charAt(i);
-        if (a >= 65 && a <= 128 || a >= 48 && a <= 57 || stud_email.charAt(i) == '@' || stud_email.charAt(i) == '.'
-            || stud_email.charAt(i) == '_')
-          continue;
-        else {
-          System.out.println("Student email is not in correct format");
+    if (stud_email.length() >= 10 && stud_email.length() <= 25) {
+      if (stud_email.charAt(0) >= 'A' && stud_email.charAt(0) <= 'z') {
+        if (stud_email.endsWith(".com") || stud_email.endsWith(".in")) {
+          if (stud_email.contains("@")) {
+            for (int i = 1; i < stud_email.length(); i++) {
+              int a = (int) stud_email.charAt(i);
+              if (a >= 65 && a <= 128 || a >= 48 && a <= 57 || stud_email.charAt(i) == '@'
+                  || stud_email.charAt(i) == '.'
+                  || stud_email.charAt(i) == '_')
+                continue;
+              else {
+                System.out.println("Student email should only contains alphabets or digits or '_' and @ and '.' ");
+                return false;
+              }
+            }
+            System.out.println("Student email is valid");
+            return true;
+          } else {
+            System.out.println("Student email should contains @ symbol");
+            return false;
+          }
+        } else {
+          System.out.println("Studnet email should ends with .com or .in");
           return false;
         }
+      } else {
+        System.out.println("Student email first character sould be aphabet");
+        return false;
       }
-      return true;
     } else {
-      System.out.println("Student email is not in correct format");
+      System.out.println("Student email id is not in required length 10 to 25 characters");
       return false;
     }
   }
